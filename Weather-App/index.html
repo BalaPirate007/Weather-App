@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Weather Nexus</title>
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌤️</text></svg>">
+
+  <meta name="description" content="Weather Nexus - a clean, flat-style weather application built with HTML, CSS and JavaScript">
+
+  <!-- Font Awesome (small forecast row icons only) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <!-- Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <main class="page">
+
+    <section class="app-card">
+
+      <!-- Search -->
+      <form id="searchForm" class="search-row">
+        <label for="cityInput" class="visually-hidden">City name</label>
+        <input type="text" id="cityInput" placeholder="Search a city..." autocomplete="off" required>
+        <button type="submit" id="searchBtn" aria-label="Search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </form>
+
+      <!-- Loading -->
+      <div id="loading" class="loading-state">
+        <div class="spinner"></div>
+        <span>Fetching weather…</span>
+      </div>
+
+      <!-- Error -->
+      <div id="error" class="error-state"></div>
+
+      <!-- Weather -->
+      <div id="weather" class="weather-display">
+
+        <!-- Hero panel -->
+        <div class="hero-panel">
+
+          <svg id="heroIcon" viewBox="0 0 120 120" width="84" height="84" aria-hidden="true">
+            <g class="rays" stroke="currentColor" stroke-width="8" stroke-linecap="round">
+              <line x1="60" y1="2"  x2="60" y2="16"  transform="rotate(0 60 60)"/>
+              <line x1="60" y1="2"  x2="60" y2="16"  transform="rotate(45 60 60)"/>
+              <line x1="60" y1="2"  x2="60" y2="16"  transform="rotate(90 60 60)"/>
+              <line x1="60" y1="2"  x2="60" y2="16"  transform="rotate(135 60 60)"/>
+              <line x1="60" y1="2"  x2="60" y2="16"  transform="rotate(180 60 60)"/>
+              <line x1="60" y1="2"  x2="60" y2="16"  transform="rotate(225 60 60)"/>
+              <line x1="60" y1="2"  x2="60" y2="16"  transform="rotate(270 60 60)"/>
+              <line x1="60" y1="2"  x2="60" y2="16"  transform="rotate(315 60 60)"/>
+            </g>
+            <circle class="sun" cx="60" cy="52" r="24"/>
+            <path class="cloud" d="M22,88 q-2,-18 16,-20 q4,-14 20,-14 q17,0 20,15 q16,-1 18,14 q2,16 -14,17 h-44 q-18,0 -16,-12 z"/>
+            <g class="rain" stroke="currentColor" stroke-width="3.5" stroke-linecap="round">
+              <line x1="38" y1="98" x2="33" y2="110"/>
+              <line x1="58" y1="98" x2="53" y2="110"/>
+              <line x1="78" y1="98" x2="73" y2="110"/>
+            </g>
+            <g class="snow" fill="currentColor">
+              <circle cx="38" cy="104" r="3"/>
+              <circle cx="58" cy="109" r="3"/>
+              <circle cx="78" cy="104" r="3"/>
+            </g>
+          </svg>
+
+          <div class="hero-text">
+            <p class="hero-label">Today</p>
+            <h2 id="temp" class="hero-temp">--°C</h2>
+            <p id="city" class="hero-city">City</p>
+            <p id="condition" class="hero-condition">Weather condition</p>
+          </div>
+
+        </div>
+
+        <!-- Stat chips -->
+        <div class="stats-row">
+
+          <div class="stat-chip">
+            <i class="fa-solid fa-cloud"></i>
+            <span id="cloudCover">--%</span>
+            <small>Cloud cover</small>
+          </div>
+
+          <div class="stat-chip">
+            <i class="fa-solid fa-wind"></i>
+            <span id="wind">-- km/h</span>
+            <small>Wind</small>
+          </div>
+
+          <div class="stat-chip">
+            <i class="fa-solid fa-droplet"></i>
+            <span id="humidity">--%</span>
+            <small>Humidity</small>
+          </div>
+
+        </div>
+
+        <!-- Forecast list -->
+        <div class="forecast-list-container">
+          <p class="section-label">Next 5 Days</p>
+          <div id="forecastList" class="forecast-list"></div>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>
